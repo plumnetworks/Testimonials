@@ -52,7 +52,7 @@ class Creovector_Testimonials_Adminhtml_TestinomialsController extends Mage_Admi
     }
 
     public function deleteAction() {
-        Mage::getModel("wbxcareer/stories")->load($this->getRequest()->getParam("id"))->delete();
+        Mage::getModel("wbxtest/wbxtest")->load($this->getRequest()->getParam("id"))->delete();
         $this->_redirect("*/*/");
     }
 
