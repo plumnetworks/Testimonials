@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<layout version="0.1.0">
+    
+    <wbxtest_index_list>
+        <reference name="content">
+            <block type="core/template" template="wbxtest/list.phtml" />
+        </reference> 
+    </wbxtest_index_list>
+    
+    <wbxtest_index_create>
+        <reference name="content">
+            <block type="core/template" template="wbxtest/form.phtml" />
+        </reference> 
+    </wbxtest_index_create>
+</layout>

@@ -1,0 +1,47 @@
+<?php
+$page = (Mage::app()->getRequest()->getParam('p') == "") ? 1 : Mage::app()->getRequest()->getParam('p');
+$count = 6;
+
+$collection = Mage::getModel('wbxtest/wbxtest')->getCollection();
+
+$number = $collection->getSize() / $count;
+
+if ($collection->getSize() % $count == 0)
+    $number--;
+?>
+
+<ul class="testimonials">
+    <?php foreach ($collection->setOrder("date", "DESC")->setPageSize($count)->setCurPage($page) as $item) { ?>
+        <li class="testimonial">
+            <div class="title">
+                <?php echo $item->getName() ?>
+            </div>
+            <div class="text">
+                <?php echo $item->getDescrition() ?>
+            </div>
+            <div class="rating">
+                <?php echo $item->getValue() ?>
+            </div>
+            <div class="date">
+                <?php $date = new DateTime($item->getDate()) ?>
+                <?php echo $date->format("d.m.Y") ?>
+            </div>
+        </li>
+    <?php } ?>
+</ul>
+
+<hr>
+<?php if ($number > 1) { ?>
+    <div class="pagination">
+        <?php for ($i = 0; $i < $number; $i++) { ?>
+            <?php $href = Mage::getUrl('wbxtest/index/list', array("p" => ($i + 1)))  ?>
+            <a class="page <?php if ($page == $i + 1) echo 'active' ?>" href="<?php echo $href ?>">
+                <?php echo $i + 1 ?>
+            </a>
+        <?php } ?>
+    </div>
+<?php } ?>
+
+<hr>
+
+<a href="<?php echo Mage::getUrl('wbxtest/index/create') ?>">Create new</a>
